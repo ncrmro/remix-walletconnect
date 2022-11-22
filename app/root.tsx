@@ -7,6 +7,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { Web3ReactHooks, Web3ReactProvider } from "@web3-react/core";
+import { WalletConnect } from "@web3-react/walletconnect";
+import {
+  hooks as walletConnectHooks,
+  walletConnect,
+} from "./connectors/walletConnect";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -14,6 +20,9 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+const connectors: [WalletConnect, Web3ReactHooks][] = [
+  [walletConnect, walletConnectHooks],
+];
 export default function App() {
   return (
     <html lang="en">
@@ -22,7 +31,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <Web3ReactProvider connectors={connectors}>
+          <Outlet />
+        </Web3ReactProvider>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
