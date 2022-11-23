@@ -2,31 +2,27 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
-    "dev": "remix build && run-p \"dev:*\"",
-    "dev:node": "cross-env NODE_ENV=development nodemon --require dotenv/config ./server.js --watch ./server.js",
     "dev:remix": "remix watch",
-    "start": "cross-env NODE_ENV=production node ./server.js",
+    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public",
+    "dev": "remix build && run-p \"dev:*\"",
+    "start": "cross-env NODE_ENV=production npm run dev:wrangler",
     "postinstall": "remix-esbuild-override"
   },
   "dependencies": {
     "@ethersproject/units": "^5.7.0",
-    "@remix-run/express": "^1.7.6",
-    "@remix-run/node": "^1.7.6",
+    "@remix-run/cloudflare": "^1.7.6",
+    "@remix-run/cloudflare-pages": "^1.7.6",
     "@remix-run/react": "^1.7.6",
     "@walletconnect/ethereum-provider": "^1.7.8",
     "@web3-react/core": "8.0.35-beta.0",
     "@web3-react/types": "8.0.20-beta.0",
     "@web3-react/walletconnect": "8.0.36-beta.0",
-    "compression": "^1.7.4",
     "cross-env": "^7.0.3",
-    "express": "^4.18.2",
-    "isbot": "^3.6.5",
-    "morgan": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^3.18.0",
     "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
     "@remix-run/dev": "^1.7.6",
     "@remix-run/eslint-config": "^1.7.6",
@@ -34,11 +30,12 @@
     "@types/react-dom": "^18.0.8",
     "dotenv": "^16.0.3",
     "eslint": "^8.27.0",
-    "nodemon": "^2.0.20",
+
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "remix-esbuild-override": "^3.0.4",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "wrangler": "^2.2.1"
   },
   "engines": {
     "node": ">=14"
