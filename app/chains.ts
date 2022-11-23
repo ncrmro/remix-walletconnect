@@ -55,7 +55,11 @@ export const CHAINS: {
   [chainId: number]: BasicChainInformation | ExtendedChainInformation;
 } = {
   1: {
-    urls: ["", "", "https://cloudflare-eth.com"].filter((url) => url !== ""),
+    urls: [
+      "https://mainnet.infura.io/v3/73d9bda28e6f4dbcabbc7cc019de685a",
+      // "https://eth-mainnet.g.alchemy.com/v2/VBVL4iy_FQoPApQeyqMLnwyrCGPNM_i4",
+      "https://cloudflare-eth.com",
+    ].filter((url) => url !== ""),
     name: "Mainnet",
   },
 };
